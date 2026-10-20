@@ -29,7 +29,9 @@ jobs:
             libfreetype-dev:i386 \
             libvulkan-dev \
             libvulkan-dev:i386 \
-            libdrm-dev
+            libdrm-dev \
+            libgl-dev \
+            libegl-dev
       - name: Configure and Build
         run: |
           tools/make_requests
