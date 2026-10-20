@@ -11,21 +11,19 @@ jobs:
         run: |
           sudo dpkg --add-architecture i386
           sudo apt-get update
-          sudo apt-get install -y gcc-multilib g++-multilib flex bison libx11-dev:i386 libfreetype-dev:i386 libvulkan-dev:i386 autoconf
           sudo apt-get install -y --no-install-recommends \
-          build-essential \
-          gcc-multilib \
-          g++-multilib \
-          flex \
-          bison \
-          autoconf \
-          autoheader \
-          libx11-dev:i386 \
-          libx11-dev \
-          libfreetype-dev:i386 \
-          libfreetype-dev \
-          libvulkan-dev:i386 \
-          libvulkan-dev
+            build-essential \
+            gcc-multilib \
+            g++-multilib \
+            flex \
+            bison \
+            autoconf \
+            libx11-dev:i386 \
+            libx11-dev \
+            libfreetype-dev:i386 \
+            libfreetype-dev \
+            libvulkan-dev:i386 \
+            libvulkan-dev
       - name: Configure and Build
         run: |
           autoheader
