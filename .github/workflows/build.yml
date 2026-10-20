@@ -14,6 +14,7 @@ jobs:
           sudo apt-get install -y gcc-multilib g++-multilib flex bison libx11-dev:i386 libfreetype-dev:i386 libvulkan-dev:i386 autoconf
       - name: Configure and Build
         run: |
+          autoheader
           autoconf
           ./configure --enable-win64
           make -j$(nproc)
