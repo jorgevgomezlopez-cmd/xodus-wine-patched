@@ -1,5 +1,7 @@
 name: Build Patched Runtime
-on: [push]
+on: 
+  push:
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -9,13 +11,14 @@ jobs:
         run: |
           sudo dpkg --add-architecture i386
           sudo apt-get update
-          sudo apt-get install -y gcc-multilib g++-multilib flex bison libx11-dev:i386 libfreetype-dev:i386 libvulkan-dev:i386
+          sudo apt-get install -y gcc-multilib g++-multilib flex bison libx11-dev:i386 libfreetype-dev:i386 libvulkan-dev:i386 autoconf
       - name: Configure and Build
         run: |
+          autoconf
           ./configure --enable-win64
           make -j$(nproc)
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: xodus-patched-runtime
-          path: ./ # Antigravity puede ajustar esta ruta de salida si Xodus usa un script custom
+          path: ./
