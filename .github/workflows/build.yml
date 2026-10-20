@@ -31,7 +31,15 @@ jobs:
             libvulkan-dev:i386 \
             libdrm-dev \
             libgl-dev \
-            libegl-dev
+            libegl-dev \
+            libxi-dev \
+            libxfixes-dev \
+            libxrandr-dev \
+            libxcursor-dev \
+            libxext-dev \
+            libxrender-dev \
+            libxinerama-dev \
+            libxxf86vm-dev
       - name: Configure and Build
         run: |
           tools/make_requests
