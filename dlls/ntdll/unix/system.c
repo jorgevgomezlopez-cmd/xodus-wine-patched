@@ -4199,14 +4199,12 @@ NTSTATUS WINAPI NtQuerySystemInformation( SYSTEM_INFORMATION_CLASS class,
     {
         SYSTEM_CODEINTEGRITY_INFORMATION *integrity_info = info;
 
-        FIXME("SystemCodeIntegrityInformation, size %u, info %p, stub!\n", size, info);
+        if (size < sizeof(*integrity_info))
+            return STATUS_INFO_LENGTH_MISMATCH;
 
-        len = sizeof(SYSTEM_CODEINTEGRITY_INFORMATION);
-
-        if (size >= len)
-            integrity_info->CodeIntegrityOptions = CODEINTEGRITY_OPTION_ENABLED;
-        else
-            ret = STATUS_INFO_LENGTH_MISMATCH;
+        integrity_info->CodeIntegrityOptions = 1;
+        len = sizeof(*integrity_info);
+        ret = STATUS_SUCCESS;
         break;
     }
 
@@ -4484,10 +4482,7 @@ NTSTATUS WINAPI NtQuerySystemEnvironmentValueEx( UNICODE_STRING *name, GUID *ven
 NTSTATUS WINAPI NtSystemDebugControl( SYSDBG_COMMAND command, void *in_buff, ULONG in_len,
                                       void *out_buff, ULONG out_len, ULONG *retlen )
 {
-    FIXME( "(%d, %p, %d, %p, %d, %p), stub\n",
-           command, in_buff, in_len, out_buff, out_len, retlen );
-
-    return STATUS_DEBUGGER_INACTIVE;
+    return STATUS_SUCCESS;
 }
 
 

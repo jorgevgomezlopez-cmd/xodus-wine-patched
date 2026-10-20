@@ -1,0 +1,21 @@
+name: Build Patched Runtime
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Dependencies
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install -y gcc-multilib g++-multilib flex bison libx11-dev:i386 libfreetype-dev:i386 libvulkan-dev:i386
+      - name: Configure and Build
+        run: |
+          ./configure --enable-win64
+          make -j$(nproc)
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: xodus-patched-runtime
+          path: ./ # Antigravity puede ajustar esta ruta de salida si Xodus usa un script custom
