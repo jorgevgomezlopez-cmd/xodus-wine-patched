@@ -31,6 +31,9 @@ jobs:
             libvulkan-dev:i386
       - name: Configure and Build
         run: |
+          tools/make_requests
+          tools/make_specfiles
+          python3 dlls/winevulkan/make_vulkan -x vk.xml -X video.xml
           autoreconf -ifv
           ./configure --enable-win64
           make -j$(nproc)
