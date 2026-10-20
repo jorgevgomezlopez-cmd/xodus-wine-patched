@@ -29,7 +29,7 @@ jobs:
             libvulkan-dev:i386
       - name: Configure and Build
         run: |
-          ./autogen.sh
+          autoreconf -ifv
           ./configure --enable-win64
           make -j$(nproc)
       - name: Upload Artifact
