@@ -20,7 +20,7 @@ jobs:
             autoconf \
             automake \
             pkg-config \
-            libgnutls-dev \
+            libgnutls28-dev \
             libx11-dev \
             libx11-dev:i386 \
             libfreetype-dev \
